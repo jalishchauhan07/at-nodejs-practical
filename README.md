@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README - User Authentication with Express.js, EJS, and Node.js</title>
 </head>
 <body>
     <h1>User Authentication with Express.js, EJS, and Node.js</h1>
 
-    <h5>This repository contains a Node.js application that demonstrates user authentication and displays user information using Express.js and EJS. The application allows users to register, log in, and view their profile information.</h5>
+    <p>This repository contains a Node.js application that demonstrates user authentication and displays user information using Express.js and EJS. The application allows users to register, log in, and view their profile information.</p>
+
     <h2>Features</h2>
     <ul>
         <li>User registration</li>
@@ -67,5 +69,6 @@ SESSION_SECRET=your-session-secret
     <p>Feel free to open issues and submit pull requests. Your contributions are welcome!</p>
 
     <h2>License</h2>
-    <p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</
+    <p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for details.</p>
 </body>
+</html>
