@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+      body {
+        font-family: "Roboto", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        margin: 0;
+      }
+
+      .login-container {
+        width: 350px;
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .login-container h2 {
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 24px;
+      }
+
+      .login-container input[type="text"],
+      .login-container input[type="password"] {
+        width: calc(100% - 20px);
+        padding: 15px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .login-container input[type="submit"] {
+        width: 100%;
+        padding: 15px;
+        background-color: #6e8efb;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .login-container input[type="submit"]:hover {
+        background-color: #5a75f7;
+      }
+
+      .login-container p {
+        margin: 20px 0 0;
+        color: #666;
+      }
+
+      .login-container a {
+        color: #6e8efb;
+        text-decoration: none;
+      }
+
+      .login-container a:hover {
+        text-decoration: underline;
+      }
+    </style>
+    <script>
+      async function handle_click() {
+        const email = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const requestOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: email, password: password }),
+        };
+
+        
+        const response = await fetch(
+          "http://localhost:8080/login",
+          requestOptions
+        );
+        
+        const responseInfo = await response.json();
+        console.log(responseInfo);
+        if (responseInfo.status != 200) {
+          alert(responseInfo.message);
+        } else {
+          alert(responseInfo.token);
+          localStorage.setItem("token", responseInfo.token);
+          localStorage.setItem("email", email);
+          window.open("http://localhost:8080/", "_self");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+
+      <input
+        type="text"
+        name="username"
+        id="username"
+        placeholder="Username"
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+        required
+      />
+      <input type="submit" onclick="handle_click()" value="Login" />
+
+      <p>Don't have an account? <a href="/register">Sign up</a></p>
+    </div>
+  </body>
+</html>

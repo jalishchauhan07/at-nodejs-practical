@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Page</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+      body {
+        font-family: "Roboto", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        margin: 0;
+      }
+
+      .register-container {
+        width: 350px;
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .register-container h2 {
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 24px;
+      }
+
+      .register-container input[type="text"],
+      .register-container input[type="email"],
+      .register-container input[type="password"] {
+        width: calc(100% - 20px);
+        padding: 15px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .register-container input[type="submit"] {
+        width: 100%;
+        padding: 15px;
+        background-color: #6e8efb;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .register-container input[type="submit"]:hover {
+        background-color: #5a75f7;
+      }
+
+      .register-container p {
+        margin: 20px 0 0;
+        color: #666;
+      }
+
+      .register-container a {
+        color: #6e8efb;
+        text-decoration: none;
+      }
+
+      .register-container a:hover {
+        text-decoration: underline;
+      }
+    </style>
+    <script>
+      async function handle_submit() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const name = document.getElementById("fullname").value;
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailPattern.test(email)) {
+          const requestOptions = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: email,
+              name: name,
+              password: password,
+            }),
+          };
+          const response = await fetch(
+            "http://localhost:8080/register",
+            requestOptions
+          );
+          const responseInfo = await response.json();
+          if (responseInfo.status != 200) {
+            alert(responseInfo.message);
+          } else {
+            window.open("http://localhost:8080/login", "_self");
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="register-container">
+      <h2>Register</h2>
+
+      <input
+        type="text"
+        id="fullname"
+        name="fullname"
+        placeholder="Full Name"
+        required
+      />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email"
+        required
+      />
+
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+        required
+      />
+
+      <input type="submit" onclick="handle_submit()" value="Register" />
+
+      <p>Already have an account? <a href="/login">Login</a></p>
+    </div>
+  </body>
+</html>
