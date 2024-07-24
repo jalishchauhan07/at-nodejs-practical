@@ -7,8 +7,7 @@
 <body>
     <h1>User Authentication with Express.js, EJS, and Node.js</h1>
 
-    <p>This repository contains a Node.js application that demonstrates user authentication and displays user information using Express.js and EJS. The application allows users to register, log in, and view their profile information.</p>
-
+    <h5>This repository contains a Node.js application that demonstrates user authentication and displays user information using Express.js and EJS. The application allows users to register, log in, and view their profile information.</h5>
     <h2>Features</h2>
     <ul>
         <li>User registration</li>
