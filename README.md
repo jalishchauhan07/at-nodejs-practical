@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>README - User Authentication with Express.js, EJS, and Node.js</title>
 </head>
 <body>
     <h1>User Authentication with Express.js, EJS, and Node.js</h1>
@@ -70,3 +69,4 @@ SESSION_SECRET=your-session-secret
 
     <h2>License</h2>
     <p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</
+</body>
